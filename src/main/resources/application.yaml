@@ -1,0 +1,11 @@
+#server:
+#  port: 9099
+#  servlet:
+#    context-path: /chapter
+#
+#student:
+#  id : 898
+#  name: 李四
+#  hobby: [read,play4]
+#  elect-product: [phone,pc]
+#  friends: {key1: 678,courseName: 王五}
