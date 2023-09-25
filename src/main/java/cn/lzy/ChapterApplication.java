@@ -9,14 +9,14 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 @ImportResource("classpath:xmlproperties.xml")
-public class ChapterApplication /*extends SpringBootServletInitializer*/ {
+public class ChapterApplication extends SpringBootServletInitializer {
 
-    /*@Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder){
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(ChapterApplication.class);
-    }*/
+    }
 
     public static void main(String[] args) {
-        SpringApplication.run(ChapterApplication.class,args);
+        SpringApplication.run(ChapterApplication.class, args);
     }
 }
