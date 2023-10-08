@@ -23,6 +23,12 @@ public interface DiscussRepository extends JpaRepository<Discuss,Integer> {
     @Query("UPDATE t_comment c SET c.author = ?1 WHERE  c.id = ?2")
     public int updateDiscuss(String author,Integer id);
 
+    // 根据评论id修改评论作者评论作者author
+    @org.springframework.transaction.annotation.Transactional
+    @Modifying
+    @Query("UPDATE t_comment c SET c.author = ?1 WHERE  c.id = ?2")
+    public int updateComment(String author,Integer id);
+
 
 //    List<Discuss> getDiscussPaged(int aid, org.springframework.data.domain.Pageable pageable);
 }
