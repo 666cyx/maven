@@ -17,7 +17,7 @@ public class RedisController {
     @Autowired
     private RedisService redisService;
 
-    //  浏览器输入查询数据url：  http://localhost:8090/getRedis/1
+    //  浏览器输入查询数据url：  http://localhost:8080/getRedis/1
     @GetMapping("/getRedis/{id}")
     public Discuss findById(@PathVariable("id") int comment_id){
         Discuss mDiscuss = redisService.findById(comment_id);
