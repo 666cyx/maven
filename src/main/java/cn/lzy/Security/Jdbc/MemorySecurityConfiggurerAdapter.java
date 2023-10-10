@@ -1,3 +1,4 @@
+/*
 package cn.lzy.Security.Jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
+*/
 /**
  * @author 陈远翔
  * @date 2023/10/9 9:56
- */
+ *//*
+
 @EnableWebSecurity
 public class MemorySecurityConfiggurerAdapter extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -28,3 +31,4 @@ public class MemorySecurityConfiggurerAdapter extends WebSecurityConfigurerAdapt
 
 }
 
+*/
