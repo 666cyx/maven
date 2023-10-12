@@ -18,5 +18,11 @@ public class FilmeController {
         System.out.println(TAG+"==toDetail=="+value);
         return value;
     }
+
+    @GetMapping("/userLogin")
+    public String toLoginPage() {
+        return "login/login";
+    }
+
 }
 
