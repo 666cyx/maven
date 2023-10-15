@@ -1,12 +1,16 @@
 package cn.lzy.Security.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
 
 /**
  * @author 陈远翔
@@ -21,6 +25,8 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
     }
+    @Autowired
+    private DataSource dataSource;
    @Override
    protected void configure(HttpSecurity http) throws Exception {
        http.authorizeRequests()
@@ -41,7 +47,17 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                .logoutUrl("/mylogout")
                .logoutSuccessUrl("/");
 
+       http.rememberMe()
+               .rememberMeParameter("rememberme")
+               .tokenValiditySeconds(2)
+               .tokenRepository(tokenRepository());
+
    }
+    @Bean
+    public JdbcTokenRepositoryImpl tokenRepository(){
+        JdbcTokenRepositoryImpl jr=new JdbcTokenRepositoryImpl();
+        jr.setDataSource(dataSource);
+        return jr;}
 
 }
 
