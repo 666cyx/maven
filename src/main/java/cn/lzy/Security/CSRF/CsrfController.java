@@ -1,5 +1,7 @@
 package cn.lzy.Security.CSRF;
 
+import cn.lzy.Security.redis.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 
     @Controller
     public class CsrfController {
+        @Autowired
+        private CustomerRepository customerRepository;
         @GetMapping("/toUpdate")
         public String toUpdate() { return "csrf/csrfTest";}
         @ResponseBody
@@ -23,6 +27,11 @@ import javax.servlet.http.HttpServletRequest;
             System.out.println(username);
             System.out.println(password);
             String csrf_token = request.getParameter("_csrf");
-            System.out.println(csrf_token);return "修改成功"; }
+            System.out.println(csrf_token);
+            customerRepository.updateCache(username,2);/*查询修改*/
+
+            return "修改成功"; }
+
+
     }
 
