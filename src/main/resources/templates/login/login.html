@@ -23,9 +23,35 @@
 
     <button class="btn btn-lg btn-primary btn-block" type="submit" >登录</button>
     <p class="mt-5 mb-3 text-muted"><!--Copyright©--> <!--显示当前时间--><div id="time">
-    <script>
+   <!-- <script>
         document.getElementById('time').innerHTML=new Date().toLocaleString();
         setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString();",1000);
+
+    </script>//中国时间（包括秒）-->
+    <script>
+        // 获取div
+        const div = document.querySelector('div')
+        // 获取系统时间的函数
+        function getNowDate() {
+            // 获取日期对象
+            const date = new Date()
+            // 获取系统当前的小时，分钟，秒，分别赋值给:h , m , s 三个变量
+            let h = date.getHours()
+            let m = date.getMinutes()
+            //let s = date.getSeconds()
+            // 实现输出格式为: xx:xx:xx  (时：分：秒)
+            h = h < 10 ? '0'+h :h
+            m = m < 10 ? '0'+m :m
+           /* s = s < 10 ? '0'+s :s*/
+            return `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${h}:${m}`  //:${s}  //getMonth() 获取月份取值从0开始，故实际月份要加1
+        }
+        // 先调用一次，刷新页面直接就会显示系统时间，否则会有延迟一秒钟的等待。
+        div.innerHTML = getNowDate()
+        // 设置时间间隔，1000毫秒执行一次，也就是一秒执行一次。
+        setInterval(function(){
+            // 调用函数，将函数返回值写入到div标签中
+            div.innerHTML = getNowDate()
+        },1000)
     </script>
 </div></p>
 </form>
