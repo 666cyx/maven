@@ -29,6 +29,8 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
    @Override
    protected void configure(HttpSecurity http) throws Exception {
+       //http.csrf().disable();//CSRF防护功能关闭(直接关闭)
+
        http.authorizeRequests()
                .antMatchers("/").permitAll()
                .antMatchers("/login/**").permitAll()
@@ -37,6 +39,7 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                .anyRequest().authenticated()
                .and()
                .formLogin();
+
        http.formLogin()
                .loginPage("/userLogin").permitAll()
                .usernameParameter("name").passwordParameter("pwd")
@@ -58,6 +61,8 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcTokenRepositoryImpl jr=new JdbcTokenRepositoryImpl();
         jr.setDataSource(dataSource);
         return jr;}
+
+
 
 }
 

@@ -32,7 +32,7 @@ public class FilmeController {
     public String toLoginPage() {
         return "login/login";
     }
-    @GetMapping("/getuserBySession")//http://localhost:8080/getuserBySession
+   @GetMapping("/getuserBySession")//http://localhost:8080/getuserBySession
     @ResponseBody
     public void getUser(HttpSession session) {
         Enumeration<String> names = session.getAttributeNames();
