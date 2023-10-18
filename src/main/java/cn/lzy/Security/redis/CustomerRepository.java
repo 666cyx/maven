@@ -11,6 +11,10 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     Customer findByUsername(String username);
     Customer findByPassword(String password);
     // 根据id修改信息
+
+    @Transactional
+    @Query("SELECT c.id FROM t_customer c WHERE c.username = ?1")
+    Integer findByUsername1(String username);
     @Transactional
     @Modifying
     @Query("UPDATE t_customer c SET c.username= ?1 WHERE  c.id = ?2")

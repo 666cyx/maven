@@ -2,6 +2,10 @@ package cn.lzy.Security.CSRF;
 
 import cn.lzy.Security.redis.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +32,16 @@ import javax.servlet.http.HttpServletRequest;
             System.out.println(password);
             String csrf_token = request.getParameter("_csrf");
             System.out.println(csrf_token);
-            customerRepository.updateCache(username,2);/*查询修改*/
-
+            //customerRepository.updateCache(username,1);/*查询修改*/
+            //获取应用上下文
+            SecurityContext context = SecurityContextHolder.getContext();
+            //获取登录的用户信息
+            Authentication authentication = context.getAuthentication();
+            UserDetails principal = (UserDetails) authentication.getPrincipal();
+            //获取登录的用户id
+            Integer updateId = customerRepository.findByUsername1(principal.getUsername());
+            //更新用户表中对应id的用户名
+            Integer result = customerRepository.updateCache(username, updateId);
             return "修改成功"; }
 
 

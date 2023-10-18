@@ -53,6 +53,7 @@ public class FilmeController {
         UserDetails principal = (UserDetails)authentication.getPrincipal();
         System.out.println(principal);
         System.out.println("username: "+principal.getUsername());
+
     }
 
 
