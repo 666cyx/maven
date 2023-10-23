@@ -31,7 +31,7 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
    protected void configure(HttpSecurity http) throws Exception {
        //http.csrf().disable();//CSRF防护功能关闭(直接关闭)
 
-       http.authorizeRequests()
+      /* http.authorizeRequests()
                .antMatchers("/").permitAll()
                .antMatchers("/login/**").permitAll()
                .antMatchers("/detail/common/**").hasRole("common")
@@ -44,7 +44,7 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                .loginPage("/userLogin").permitAll()
                .usernameParameter("name").passwordParameter("pwd")
                .defaultSuccessUrl("/")
-               .failureUrl("/userLogin?error");
+               .failureUrl("/userLogin?error");*/
 
        http.logout()
                .logoutUrl("/mylogout")
@@ -54,7 +54,6 @@ public class RedisSecurityConfig extends WebSecurityConfigurerAdapter {
                .rememberMeParameter("rememberme")
                .tokenValiditySeconds(2)
                .tokenRepository(tokenRepository());
-
    }
     @Bean
     public JdbcTokenRepositoryImpl tokenRepository(){

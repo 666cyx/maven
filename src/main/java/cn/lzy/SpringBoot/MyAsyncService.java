@@ -1,5 +1,6 @@
 package cn.lzy.SpringBoot;
 
+import cn.lzy.utils.DataUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ public class MyAsyncService {
 
     @Async
     public Future<Integer> processA() throws Exception {
-        System.out.println("开始分析并统计业务A数据...");
+        System.out.println("计算1-1000的值总和开始时间："+ DataUtils.getData(DataUtils.data1));
+        System.out.println("开始计算1-1000的值总和..."+"\n");
+
         Long startTime = System.currentTimeMillis();
         Thread.sleep(5000);
         //int count=123456;
@@ -32,25 +35,28 @@ public class MyAsyncService {
         for(int i =1;i<1001;i++) {
             al+=i;
         }
-        System.out.println("业务A数据异步统计结果："+al);
+        System.out.println("计算1-1000的值总和统计结果为："+al);
         Long endTime = System.currentTimeMillis();
-        System.out.println("业务A数据统计耗时：" + (endTime - startTime));
+        System.out.println("计算1-1000的值总和统计耗时：" + (endTime - startTime));
+        System.out.println("计算1-1000的值总和结束时间："+DataUtils.getData(DataUtils.data1+"\n"));
         return new AsyncResult<Integer>(al);
     }
     @Async
     public Future<Integer> processB() throws Exception {
-        System.out.println("开始分析并统计业务B数据...");
+        System.out.println("计算1000-2000的值总和开始时间："+DataUtils.getData(DataUtils.data1));
+        System.out.println("开始计算1000-2000的值总和..."+"\n");
         Long startTime = System.currentTimeMillis();
-        Thread.sleep(4000);
+        Thread.sleep(0);
         //int count=654321;
 
         int all = 0;
         for(int i =1000;i<2001;i++) {
             all+=i;
         }
-        System.out.println("业务B数据异步统计结果："+all);
+        System.out.println("计算1000-2000的值总和为："+all);
         Long endTime = System.currentTimeMillis();
-        System.out.println("业务B数据统计耗时：" + (endTime - startTime));
+        System.out.println("计算1000-2000的值总和统计耗时：" + (endTime - startTime));
+        System.out.println("计算1000-2000的值总和结束时间："+DataUtils.getData(DataUtils.data1+"\n"));
         return new AsyncResult<Integer>(all);
     }
 

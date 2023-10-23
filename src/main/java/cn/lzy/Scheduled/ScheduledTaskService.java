@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Service
 public class ScheduledTaskService {
-    @Scheduled(fixedRate = 5000)//开始5秒后再执行一次
+   /* @Scheduled(fixedRate = 5000)//开始5秒后再执行一次
     public void fixedRate() throws InterruptedException{
         System.out.println("fixedRate====="+cn.lzy.utils.DataUtils.getData(DataUtils.data1));
         Thread.sleep(10*1000);//代码等待10秒执行
@@ -52,7 +52,7 @@ public void initialDelay() throws InterruptedException {
     public void initialDelay1() throws InterruptedException {
         System.out.println("initialDelay-----"+DataUtils.getData(DataUtils.data1));
         Thread.sleep(5*1000);//5秒之后重复执行任务
-    }
+    }*/
 
    /* private static final SimpleDateFormat dateFormat =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
